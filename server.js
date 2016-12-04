@@ -9,7 +9,7 @@ var app = express()
 app.set('port', process.env.PORT || 3000)
 
 var options = {
-  root: __dirname + '/public/',
+  root: path.join(__dirname, 'public'),
   dotfiles: 'deny',
   headers: {
     'x-timestamp': Date.now(),
@@ -71,7 +71,7 @@ app.get('/auth/callback', function (req, res) {
       tumblrOauthAccessTokenSecret = _oauthAccessTokenSecret
 
       res.redirect('/')
-      //res.send('You are signed in. <a href=\'/auth/test\'/>Test</a>')
+      // res.send('You are signed in. <a href=\'/auth/test\'/>Test</a>')
     }
   })
 })
