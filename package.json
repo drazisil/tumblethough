@@ -6,7 +6,7 @@
   "scripts": {
     "test": "standard && mocha -R mocha-multi --reporter-options spec=-,xunit=results.xml",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly && npm run coverage2",
-    "coverage2": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "coverage2": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
