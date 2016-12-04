@@ -5,4 +5,4 @@ machine:
 test:
   post:
     - npm run coverage
-    - mkdir $CIRCLE_TEST_REPORTS/junit && cp result.xml $CIRCLE_TEST_REPORTS/junit/
+    - mkdir $CIRCLE_TEST_REPORTS/junit && cp results.xml $CIRCLE_TEST_REPORTS/junit/
