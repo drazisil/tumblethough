@@ -4,8 +4,8 @@
   "description": "An OSS Tumblr client inspired by TumbleOn for iOS",
   "main": "index.js",
   "scripts": {
-    "test": "standard && mocha -R mocha-multi --reporter-options spec=-,xunit=results.xml && npm run coverage",
-    "pre-coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly",
+    "test": "standard && mocha -R mocha-multi --reporter-options spec=-,xunit=results.xml && npm run pre-coverage",
+    "pre-coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly && npm run coverage",
     "coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
