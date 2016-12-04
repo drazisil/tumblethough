@@ -1,0 +1,22 @@
+{
+  "name": "tumblethough",
+  "version": "1.0.0",
+  "description": "An OSS Tumblr client inspired by TumbleOn for iOS",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drazisil/tumblethough.git"
+  },
+  "keywords": [
+    "tumblr"
+  ],
+  "author": "joseph w becher <jwbecher@drazisil.com> (drazisil)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/drazisil/tumblethough/issues"
+  },
+  "homepage": "https://github.com/drazisil/tumblethough#readme"
+}
