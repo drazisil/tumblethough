@@ -1,3 +1,8 @@
 machine:
   node:
     version: 6.9.1
+
+test:
+  post:
+    - mkdir $CIRCLE_TEST_RESULTS/junit && cp result.xml $CIRCLE_TEST_RESULTS/junit/
+    
