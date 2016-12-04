@@ -4,5 +4,4 @@ machine:
 
 test:
   post:
-    - mkdir $CIRCLE_TEST_RESULTS/junit && cp result.xml $CIRCLE_TEST_RESULTS/junit/
-    
+    - mkdir $CIRCLE_TEST_REPORTS/junit && cp result.xml $CIRCLE_TEST_REPORTS/junit/
