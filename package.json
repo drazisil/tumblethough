@@ -4,7 +4,8 @@
   "description": "An OSS Tumblr client inspired by TumbleOn for iOS",
   "main": "index.js",
   "scripts": {
-    "test": "standard && mocha -R mocha-multi --reporter-options spec=-,xunit=results.xml"
+    "test": "standard && mocha -R mocha-multi --reporter-options spec=-,xunit=results.xml",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,10 @@
   },
   "homepage": "https://github.com/drazisil/tumblethough#readme",
   "devDependencies": {
+    "coveralls": "^2.11.15",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0",
     "mocha-multi": "^0.9.1",
     "standard": "^8.6.0"
   },
