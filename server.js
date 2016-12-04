@@ -1,11 +1,21 @@
 var express = require('express')
 var oauth = require('oauth')
 var http = require('http')
+const path = require('path')
 var tumblr = require('tumblr.js')
 
 var app = express()
 
 app.set('port', process.env.PORT || 3000)
+
+var options = {
+  root: __dirname + '/public/',
+  dotfiles: 'deny',
+  headers: {
+    'x-timestamp': Date.now(),
+    'x-sent': true
+  }
+}
 
 /**
  * These four variables will be needed to use tumblr.js
@@ -36,7 +46,7 @@ app.get('/', function (req, res) {
   if (!tumblrOauthAccessToken || !tumblrOauthAccessTokenSecret) {
     res.redirect('/auth/request')
   }
-  res.send('You are logged in and ready to go')
+  res.sendFile('index.html', options)
 })
 
 app.get('/auth/request', function (req, res) {
@@ -60,12 +70,13 @@ app.get('/auth/callback', function (req, res) {
       tumblrOauthAccessToken = _oauthAccessToken
       tumblrOauthAccessTokenSecret = _oauthAccessTokenSecret
 
-      res.send('You are signed in. <a href=\'/test\'/>Test</a>')
+      res.redirect('/')
+      //res.send('You are signed in. <a href=\'/auth/test\'/>Test</a>')
     }
   })
 })
 
-app.get('/test', function (req, res) {
+app.get('/auth/test', function (req, res) {
   if (!tumblrOauthAccessToken || !tumblrOauthAccessTokenSecret) {
     res.redirect('/auth/request')
   }
@@ -85,6 +96,8 @@ app.get('/test', function (req, res) {
     }
   })
 })
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'))
