@@ -1,0 +1,34 @@
+    <div class="container" ng-controller="ImageController as tumblethough">
+
+      <div class="starter-template">
+        <h1>Liked Images</h1>
+        <p class="lead">This is a list of known active P2Pools, sorted by most recently seen.<br>
+        <a href="http://p2pool.in/">P2Pool</a> is a decentralized peer to peer (P2P) mining pool, used for mining Bitcoin and other cryptocurrencies.
+        </p>
+      </div>
+
+      <div class="container-fluid">
+
+  <h2 class="sub-header">Active Pools</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>IP Address</th>
+                  <th>Hashrate</th>
+                  <th>Uptime</th>
+                  <th>Last Seen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="image in tumblethough.images">
+                  <td><a href="{{image.post_url}}"><img src="{{image.photos[0].original_size.url}}"></a></td>
+                  <td>{{image.blog_name}}</td>
+                  <td>{{image.date}} Days</td>
+                  <td>{{image.summary}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div><!-- /.container -->
