@@ -2,6 +2,8 @@ var express = require('express')
 var oauth = require('oauth')
 var http = require('http')
 const path = require('path')
+var os = require('os')
+
 var tumblr = require('tumblr.js')
 
 var app = express()
@@ -29,6 +31,19 @@ var tumblrOauthAccessTokenSecret
 var oauthRequestToken
 var oauthRequestTokenSecret
 
+var interfaces = os.networkInterfaces();
+var addresses = []
+for (var k in interfaces) {
+    for (var k2 in interfaces[k]) {
+        var address = interfaces[k][k2]
+        if (address.family === 'IPv4' && !address.internal) {
+            addresses.push(address.address)
+        }
+    }
+}
+
+console.log(addresses[0])
+
 /**
  * This object will be used for OAuth
  **/
@@ -38,7 +53,7 @@ var consumer = new oauth.OAuth(
   tumblrConsumerKey,
   tumblrConsumerSecret,
   '1.0A',
-  'http://localhost:3000/auth/callback',
+  'http://' + addresses[0] + ':3000/auth/callback',
   'HMAC-SHA1'
 )
 
@@ -88,7 +103,7 @@ app.get('/auth/test', function (req, res) {
     token_secret: tumblrOauthAccessTokenSecret
   })
 
-  client.userLikes(function (err, data) {
+  client.userLikes({'offset': req.query.offset}, function (err, data) {
     if (err) {
       res.send(err)
     } else {
