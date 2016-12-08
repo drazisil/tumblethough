@@ -10,6 +10,14 @@
       <div class="container-fluid">
 
   <h2 class="sub-header">Active Pools</h2>
+  <div id="gallery-wrap">
+  <ul class="dynamic-grid" angular-grid="tumblethough.images" ag-gutter-size="10" ag-id="gallery" ag-refresh-on-img-load="false" ag-infinite-scroll="tumblethough.loadMore()" >
+     <li data-ng-repeat="image in tumblethough.images" class="grid">
+         <img src="{{image.photos[0].alt_sizes[2].url}}" class="grid-img" data-actual-width = "{{image.photos[0].alt_sizes[2].width}}"  data-actual-height="{{image.photos[0].alt_sizes[2].height}}" />
+     </li>
+ </ul>
+ </div>
+ <br>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -22,7 +30,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat="image in tumblethough.images">
-                  <td><a href="{{image.post_url}}"><img src="{{image.photos[0].original_size.url}}"></a></td>
+                  <td><a href="{{image.post_url}}"><img src="{{image.photos[0].origional_size.url}}"></a></td>
                   <td>{{image.blog_name}}</td>
                   <td>{{image.date}} Days</td>
                   <td>{{image.summary}}</td>

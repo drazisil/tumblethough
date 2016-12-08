@@ -1,7 +1,7 @@
 // P2Pools
 (function() {
     var app = angular.module('tumblethough', ['tumblethough-filters', 'tumblethough-frontpage', 'tumblethough-about',
-        'tumblethough-contact', 'tumblethough-images', 'ngRoute'])
+        'tumblethough-contact', 'tumblethough-images', 'ngRoute', 'angularGrid'])
 
     .config(['$routeProvider',
         function($routeProvider) {
@@ -57,7 +57,7 @@
   
 })();
 
-// Test
+// Images
 (function() {
     var app = angular.module('tumblethough-images', [])
 
@@ -65,19 +65,22 @@
         var imagePage = this
         imagePage.scope = $scope
         
-        imagePage.images = {}
+        var offset = 0
+        imagePage.images = []
 
-        function updatePeers(imagePage) {
-            $http.get('./auth/test').then(function(r){
-                imagePage.images = r.data.liked_posts;
+        function updateImages(offsetNum) {
+            $http.get('./auth/test?offset=' + offsetNum).then(function(r){
+                imagePage.images = imagePage.images.concat(r.data.liked_posts)
+                offset = offset + 20
             })
-        };
+        }
+ 
+        //method to load next data
+        imagePage.loadMore = function(){
+            updateImages(offset)
+        }
         
-        setInterval(function(scope) {
-            updatePeers(imagePage);
-        }, 120000);
-        
-        updatePeers(imagePage);
+        updateImages(offset)
     }])
     
   
