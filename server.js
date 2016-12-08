@@ -60,8 +60,9 @@ var consumer = new oauth.OAuth(
 app.get('/', function (req, res) {
   if (!tumblrOauthAccessToken || !tumblrOauthAccessTokenSecret) {
     res.redirect('/auth/request')
+  } else {
+    res.sendFile('index.html', options)
   }
-  res.sendFile('index.html', options)
 })
 
 app.get('/auth/request', function (req, res) {
@@ -80,7 +81,7 @@ app.get('/auth/request', function (req, res) {
 app.get('/auth/callback', function (req, res) {
   consumer.getOAuthAccessToken(oauthRequestToken, oauthRequestTokenSecret, req.query.oauth_verifier, function (error, _oauthAccessToken, _oauthAccessTokenSecret) {
     if (error) {
-      res.send('Error getting OAuth access token: ' + error, 500)
+      res.status(500).send('Error getting OAuth access token: ' + error)
     } else {
       tumblrOauthAccessToken = _oauthAccessToken
       tumblrOauthAccessTokenSecret = _oauthAccessTokenSecret
@@ -94,22 +95,22 @@ app.get('/auth/callback', function (req, res) {
 app.get('/auth/test', function (req, res) {
   if (!tumblrOauthAccessToken || !tumblrOauthAccessTokenSecret) {
     res.redirect('/auth/request')
+  } else {
+    var client = tumblr.createClient({
+      consumer_key: tumblrConsumerKey,
+      consumer_secret: tumblrConsumerSecret,
+      token: tumblrOauthAccessToken,
+      token_secret: tumblrOauthAccessTokenSecret
+    })
+
+    client.userLikes({'offset': req.query.offset}, function (err, data) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.send(data)
+      }
+    })
   }
-
-  var client = tumblr.createClient({
-    consumer_key: tumblrConsumerKey,
-    consumer_secret: tumblrConsumerSecret,
-    token: tumblrOauthAccessToken,
-    token_secret: tumblrOauthAccessTokenSecret
-  })
-
-  client.userLikes({'offset': req.query.offset}, function (err, data) {
-    if (err) {
-      res.send(err)
-    } else {
-      res.send(data)
-    }
-  })
 })
 
 app.use(express.static(path.join(__dirname, 'public')))
