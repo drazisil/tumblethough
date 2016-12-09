@@ -70,7 +70,13 @@
 
         function updateImages(offsetNum) {
             $http.get('./auth/test?offset=' + offsetNum).then(function(r){
-                imagePage.images = imagePage.images.concat(r.data.liked_posts)
+                console.log(offset)
+                if (offset != 0) {
+                    imagePage.images = imagePage.images.concat(r.data.liked_posts)
+                } else {
+                    imagePage.images = r.data.liked_posts
+                }
+                
                 offset = offset + 20
             })
         }
@@ -80,7 +86,7 @@
             updateImages(offset)
         }
         
-        updateImages(offset)
+        imagePage.loadMore()
     }])
     
   
