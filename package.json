@@ -35,7 +35,7 @@
       "it"
     ],
     "ignore": [
-      "public/assets"
+      "public/assets/*"
     ]
   },
   "dependencies": {
