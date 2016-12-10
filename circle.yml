@@ -17,5 +17,5 @@ deployment:
       - git config --global user.email "jwbecher@drazisil.com"
       - git config --global user.name "CircleCI Deployment"
       - git fetch && git checkout staging
-      - git merge -m $(git log -1 dev --pretty=%B) dev
+      - git merge -m "from dev" dev
       - git push --set-upstream github staging
