@@ -4,7 +4,7 @@ machine:
 
 test:
   pre:
-    - ls ~/.ssh
+    - ssh -i ~/.ssh/id_CircleCI git@github.com
   post:
     - npm run coverage
     - mkdir $CIRCLE_TEST_REPORTS/junit && cp results.xml $CIRCLE_TEST_REPORTS/junit/
