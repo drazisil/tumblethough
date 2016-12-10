@@ -5,20 +5,34 @@
         <p class="lead">This is a list of known active P2Pools, sorted by most recently seen.<br>
         <a href="http://p2pool.in/">P2Pool</a> is a decentralized peer to peer (P2P) mining pool, used for mining Bitcoin and other cryptocurrencies.
         </p>
-      </div>
+      </div><!-- /.starter-template -->
 
       <div class="container-fluid">
 
-  <h2 class="sub-header">Active Pools</h2>
-  <div id="gallery-wrap">
-  <ul class="dynamic-grid" angular-grid="tumblethough.posts" ag-gutter-size="10" ag-id="gallery" ag-refresh-on-img-load="false" ag-infinite-scroll="tumblethough.loadMore()" ng-show='tumblethough.posts'>
-     <li data-ng-repeat="post in tumblethough.posts" class="grid">
-         <img src="{{post.photos[0].alt_sizes[2].url}}" class="grid-img" data-actual-width = "{{post.photos[0].alt_sizes[2].width}}"  data-actual-height="{{post.photos[0].alt_sizes[2].height}}" /><br>
-         <span class="reblog"><img ng-click="tumblethough.reblogQ(post.id, post.reblog_key)" src="./assets/ico/fe/arrow_refresh.png"></a></span>
-         <span><a href="{{post.post_url}}" target="_blank"><img src="./assets/ico/fe/arrow_right.png"></a></span>
-     </li>
- </ul>
- </div>
- <br>
-
+        <h2 class="sub-header">Active Pools</h2>
+        <div id="gallery-wrap">
+          <ul class="dynamic-grid" 
+              angular-grid="tumblethough.posts" 
+              ag-gutter-size="10" 
+              ag-id="gallery" 
+              ag-refresh-on-img-load="false" 
+              ag-infinite-scroll="tumblethough.loadMore()" 
+              ng-show='tumblethough.posts'>
+            <li data-ng-repeat="post in tumblethough.posts" 
+                class="grid">
+              <img src="{{post.photos[0].alt_sizes[2].url}}" 
+                   class="grid-img" 
+                   data-actual-width = "{{post.photos[0].alt_sizes[2].width}}" 
+                   data-actual-height="{{post.photos[0].alt_sizes[2].height}}" /><br>
+              <span class="reblog">
+                <img ng-click="tumblethough.reblogQ(post.id, post.reblog_key)" src="./assets/ico/fe/arrow_refresh.png"></a>
+              </span>
+              <span>
+                <a href="{{post.post_url}}" target="_blank"><img src="./assets/ico/fe/arrow_right.png"></a>
+              </span>
+            </li>
+          </ul>
+        </div><!-- /#gallery-wrap -->
+        <br>
+      </div><!-- /.container-fluid -->
     </div><!-- /.container -->
