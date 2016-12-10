@@ -66,15 +66,20 @@
         imagePage.scope = $scope
         
         var offset = 0
-        imagePage.images = []
+        imagePage.posts = []
 
         function updateImages(offsetNum) {
             $http.get('./auth/test?offset=' + offsetNum).then(function(r){
-                console.log(offset)
+                for(var i = r.data.liked_posts.length; i--;){
+                   if (!r.data.liked_posts[i].photos) {
+                    console.log('Removing ' + r.data.liked_posts[i].post_url + ' due to no photos detected')
+                    r.data.liked_posts.splice(i, 1);
+                   } 
+                }
                 if (offset != 0) {
-                    imagePage.images = imagePage.images.concat(r.data.liked_posts)
+                    imagePage.posts.push(r.data.liked_posts)
                 } else {
-                    imagePage.images = r.data.liked_posts
+                    imagePage.posts = r.data.liked_posts
                 }
                 
                 offset = offset + 20
@@ -95,6 +100,31 @@
 // Blocksplorer Filters
 (function() {
     var app = angular.module('tumblethough-filters', [])
+
+    .filter('image_url', function() {
+        return function(post) {
+            if (!post.photos) {
+                console.log('No photos for post: ' + post.post_url)
+            }
+            // console.log('Image count: ' + post.photos.length)
+            // console.log('Length: ' + post.photos[0].alt_sizes.length)
+            if (post.photos[0].alt_sizes[2].url) {
+                return post.photos[0].alt_sizes[2].url
+            } else if (post.photos[0].alt_sizes[1].url) {
+                console.log('1')
+                return post.photos[0].alt_sizes[1].url
+            } else if (post.photos[0].alt_sizes[0].url) {
+                console.log('0')
+                return post.photos[0].alt_sizes[0].url
+            } else if (post.photos[0].original_size) {
+                console.log('Original')
+                return post.photos[0].original_size.url
+            } else {                
+                console.dir(post)
+                return post
+            }
+        };
+    })
 })();
 
 // About Page
