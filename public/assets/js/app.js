@@ -22,9 +22,8 @@
                   controller: 'ImageController'
                 })
                 .otherwise({
-                  templateUrl: 'templates/index.html',
-                  controller: 'FrontPageController'
-
+                  templateUrl: 'templates/images.html',
+                  controller: 'ImageController'
                 })
       }])
 
