@@ -77,7 +77,7 @@
                    } 
                 }
                 if (offset != 0) {
-                    imagePage.posts.push(r.data.liked_posts)
+                    imagePage.posts = imagePage.posts.concat(r.data.liked_posts)
                 } else {
                     imagePage.posts = r.data.liked_posts
                 }
