@@ -108,7 +108,7 @@ app.get('/auth/test', function (req, res) {
         console.log(err)
         res.send(err)
       } else {
-        posts = []
+        var posts = []
         for (var i = data.liked_posts.length - 1; i >= 0; i--) {
           if (data.liked_posts[i].photos) {
             posts.unshift(data.liked_posts[i])
@@ -117,6 +117,34 @@ app.get('/auth/test', function (req, res) {
         res.send(posts)
       }
     })
+  }
+})
+
+app.get('/auth/reblog', function (req, res) {
+  if (!tumblrOauthAccessToken || !tumblrOauthAccessTokenSecret) {
+    res.redirect('/auth/request')
+  } else {
+    var client = tumblr.createClient({
+      consumer_key: tumblrConsumerKey,
+      consumer_secret: tumblrConsumerSecret,
+      token: tumblrOauthAccessToken,
+      token_secret: tumblrOauthAccessTokenSecret
+    })
+
+    var blogName = ''
+    // Show user's blog names
+    client.userInfo(function(err, data) {
+      blogName = data.user.blogs[0].name
+
+      client.reblogPost(blogName, {'type': 'photo', 'state': 'queued', 'id': req.query.id, 'reblog_key': req.query.reblog_key}, function (err, data) {
+        if (err) {
+          console.log(err)
+          res.send(err)
+        } else {
+          res.send(data)
+        }
+      })
+    });
   }
 })
 

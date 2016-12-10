@@ -84,6 +84,12 @@
         imagePage.loadMore = function(){
             updateImages(offset)
         }
+
+        imagePage.reblogQ = function(id, reblog_key){
+            $http.get('./auth/reblog?id=' + id + '&reblog_key=' + reblog_key).then(function(r){
+                console.log(r)
+            })
+        }
         
         imagePage.loadMore()
     }])

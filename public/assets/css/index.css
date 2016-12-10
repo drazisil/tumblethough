@@ -41,3 +41,5 @@ text {
     visibility: visible;
     opacity: 1;
 }
+
+.reblog { cursor: pointer; }
