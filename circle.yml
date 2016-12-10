@@ -3,14 +3,17 @@ machine:
     version: 6.9.1
 
 test:
-  pre:
-    - cat .ssh-config >> ~/.ssh/config
-    - git remote add github git@github-as-circleci:drazisil/tumblethough.git
   post:
     - npm run coverage
     - mkdir $CIRCLE_TEST_REPORTS/junit && cp results.xml $CIRCLE_TEST_REPORTS/junit/
     - cp -r coverage $CIRCLE_TEST_REPORTS/
 
-    - git config --global user.email "jwbecher@drazisil.com"
-    - git config --global user.name "CircleCI Deployment"
-    - touch moo.txt && git add moo.txt && git commit -m "moo.txt" && git push --set-upstream github dev
+deployment:
+  staging:
+    branch: dev
+    commands:
+      - cat .ssh-config >> ~/.ssh/config
+      - git remote add github git@github-as-circleci:drazisil/tumblethough.git      - git config --global user.email "jwbecher@drazisil.com"
+      - git config --global user.name "CircleCI Deployment"
+      - git merge dev -m $(git log -1 --pretty=%B)
+      - git push --set-upstream github staging
