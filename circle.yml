@@ -4,7 +4,8 @@ machine:
 
 test:
   pre:
-    - ssh -i ~/.ssh/id_CircleCI git@github.com
+    - cat .ssh-config >> ~/.ssh/config
+    - ssh github-as-circleci
   post:
     - npm run coverage
     - mkdir $CIRCLE_TEST_REPORTS/junit && cp results.xml $CIRCLE_TEST_REPORTS/junit/
