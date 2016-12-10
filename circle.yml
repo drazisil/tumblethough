@@ -18,5 +18,5 @@ deployment:
       - git config --global user.name "CircleCI Deployment"
       - git checkout staging
       - git pull
-      - git merge dev -m $(git log -1 --pretty=%B)
+      - git merge dev -m $(git log -1 dev --pretty=%B)
       - git push --set-upstream github staging
