@@ -70,16 +70,10 @@
 
         function updateImages(offsetNum) {
             $http.get('./auth/test?offset=' + offsetNum).then(function(r){
-                for(var i = r.data.liked_posts.length; i--;){
-                   if (!r.data.liked_posts[i].photos) {
-                    console.log('Removing ' + r.data.liked_posts[i].post_url + ' due to no photos detected')
-                    r.data.liked_posts.splice(i, 1);
-                   } 
-                }
                 if (offset != 0) {
-                    imagePage.posts = imagePage.posts.concat(r.data.liked_posts)
+                    imagePage.posts = imagePage.posts.concat(r.data)
                 } else {
-                    imagePage.posts = r.data.liked_posts
+                    imagePage.posts = r.data
                 }
                 
                 offset = offset + 20

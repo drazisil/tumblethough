@@ -105,9 +105,16 @@ app.get('/auth/test', function (req, res) {
 
     client.userLikes({'offset': req.query.offset}, function (err, data) {
       if (err) {
+        console.log(err)
         res.send(err)
       } else {
-        res.send(data)
+        posts = []
+        for (var i = data.liked_posts.length - 1; i >= 0; i--) {
+          if (data.liked_posts[i].photos) {
+            posts.unshift(data.liked_posts[i])
+          }
+        }
+        res.send(posts)
       }
     })
   }
