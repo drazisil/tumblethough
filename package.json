@@ -32,7 +32,8 @@
   "standard": {
     "globals": [
       "describe",
-      "it"
+      "it",
+      "angular"
     ],
     "ignore": [
       "public/assets/*"
