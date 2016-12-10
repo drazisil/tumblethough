@@ -1,6 +1,6 @@
 
 Host github-as-circleci
   HostName github.com
-  User drazisil
+  User git
   IdentityFile /home/ubuntu/.ssh/id_CircleCI
   IdentitiesOnly yes
