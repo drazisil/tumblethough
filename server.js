@@ -133,18 +133,22 @@ app.get('/auth/reblog', function (req, res) {
 
     var blogName = ''
     // Show user's blog names
-    client.userInfo(function(err, data) {
-      blogName = data.user.blogs[0].name
+    client.userInfo(function (err, data) {
+      if (err) {
+        console.log(err)
+      } else {
+        blogName = data.user.blogs[0].name
 
-      client.reblogPost(blogName, {'type': 'photo', 'state': 'queued', 'id': req.query.id, 'reblog_key': req.query.reblog_key}, function (err, data) {
-        if (err) {
-          console.log(err)
-          res.send(err)
-        } else {
-          res.send(data)
-        }
-      })
-    });
+        client.reblogPost(blogName, {'type': 'photo', 'state': 'queued', 'id': req.query.id, 'reblog_key': req.query.reblog_key}, function (err, data) {
+          if (err) {
+            console.log(err)
+            res.send(err)
+          } else {
+            res.send(data)
+          }
+        })
+      }
+    })
   }
 })
 
