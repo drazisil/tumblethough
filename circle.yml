@@ -16,6 +16,6 @@ deployment:
       - git remote add github git@github-as-circleci:drazisil/tumblethough.git
       - git config --global user.email "jwbecher@drazisil.com"
       - git config --global user.name "CircleCI Deployment"
-      - git checkout -B staging
+      - git checkout staging
       - git merge dev -m $(git log -1 --pretty=%B)
       - git push --set-upstream github staging
