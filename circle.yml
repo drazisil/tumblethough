@@ -3,6 +3,8 @@ machine:
     version: 6.9.1
 
 test:
+  pre:
+    - ls ~/.ssh
   post:
     - npm run coverage
     - mkdir $CIRCLE_TEST_REPORTS/junit && cp results.xml $CIRCLE_TEST_REPORTS/junit/
