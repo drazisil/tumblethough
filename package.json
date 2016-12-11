@@ -1,12 +1,12 @@
 {
   "name": "tumblethough",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An OSS Tumblr client inspired by TumbleOn for iOS",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "standard && mocha -R mocha-multi --reporter-options spec=-,xunit=results.xml",
-    "coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly && npm run coverage2",
-    "coverage2": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coverage": "nyc --reporter=html --reporter=text --report-dir=docs/coverage node_modules/mocha/bin/_mocha && npm run coverage2",
+    "coverage2": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -27,12 +27,22 @@
     "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.2.0",
     "mocha-multi": "^0.9.1",
+    "nyc": "^10.0.0",
     "standard": "^8.6.0"
   },
   "standard": {
     "globals": [
       "describe",
-      "it"
+      "it",
+      "angular"
+    ],
+    "ignore": [
+      "app/assets/*"
     ]
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "oauth": "^0.9.14",
+    "tumblr.js": "^1.1.1"
   }
 }

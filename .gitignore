@@ -50,3 +50,4 @@ node_modules
 results.xml
 coverage
 *.log
+.nyc_output

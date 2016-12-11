@@ -6,4 +6,16 @@ test:
   post:
     - npm run coverage
     - mkdir $CIRCLE_TEST_REPORTS/junit && cp results.xml $CIRCLE_TEST_REPORTS/junit/
-    - cp -r coverage $CIRCLE_TEST_REPORTS/
+    - cp -r docs $CIRCLE_ARTIFACTS/
+
+deployment:
+  staging:
+    branch: dev
+    commands:
+      - cat .ssh-config >> ~/.ssh/config
+      - git remote add github git@github-as-circleci:drazisil/tumblethough.git
+      - git config --global user.email "jwbecher@drazisil.com"
+      - git config --global user.name "CircleCI Deployment"
+      - git fetch && git checkout staging
+      - git merge -m "$(git log -1 dev --pretty=%B)" dev
+      - git push --set-upstream github staging
