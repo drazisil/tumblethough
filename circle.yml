@@ -2,6 +2,10 @@ machine:
   node:
     version: 6.9.1
 
+general:
+  artifacts:
+    - "docs"
+
 test:
   post:
     - npm run coverage
