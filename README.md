@@ -7,3 +7,13 @@ An OSS Tumblr client, inspired by [TumbleOn](https://itunes.apple.com/us/app/tum
 ###Credits: 
 
 * angulargrid (https://github.com/s-yadav/angulargrid)
+
+##Copyrights
+
+##TumbleThough
+
+TumbleThough is licenced under the Apache 2.0 licence and uses the Tumblr API
+
+##Tumblr
+
+Tumblr is Copyrighted by tumblr.com, all logos and names from the site belong to them.
