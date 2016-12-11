@@ -37,7 +37,8 @@
       "angular"
     ],
     "ignore": [
-      "app/assets/*"
+      "app/assets/*",
+      "docs/coverage/*"
     ]
   },
   "dependencies": {
