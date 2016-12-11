@@ -37,7 +37,7 @@
       "angular"
     ],
     "ignore": [
-      "public/assets/*"
+      "app/assets/*"
     ]
   },
   "dependencies": {
