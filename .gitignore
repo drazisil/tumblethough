@@ -48,6 +48,6 @@ Temporary Items
 
 node_modules
 results.xml
-coverage
+./coverage
 *.log
 .nyc_output

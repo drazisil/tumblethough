@@ -16,6 +16,7 @@ deployment:
       - git remote add github git@github-as-circleci:drazisil/tumblethough.git
       - git config --global user.email "jwbecher@drazisil.com"
       - git config --global user.name "CircleCI Deployment"
+      - git commit -a -m "Updating coverage report"
       - git fetch && git checkout staging
       - git merge -m "$(git log -1 dev --pretty=%B)" dev
       - git push --set-upstream github staging

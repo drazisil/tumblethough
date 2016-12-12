@@ -1,6 +1,6 @@
 {
   "name": "tumblethough",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An OSS Tumblr client inspired by TumbleOn for iOS",
   "main": "server.js",
   "scripts": {
@@ -37,7 +37,8 @@
       "angular"
     ],
     "ignore": [
-      "app/assets/*"
+      "app/assets/*",
+      "docs/coverage/*"
     ]
   },
   "dependencies": {
