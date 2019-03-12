@@ -22,13 +22,13 @@
   },
   "homepage": "https://github.com/drazisil/tumblethough#readme",
   "devDependencies": {
-    "coveralls": "^2.11.15",
+    "coveralls": "^3.0.3",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
+    "mocha": "^6.0.2",
     "mocha-lcov-reporter": "^1.2.0",
-    "mocha-multi": "^0.11.0",
-    "nyc": "^10.0.0",
-    "standard": "^10.0.1"
+    "mocha-multi": "^1.0.1",
+    "nyc": "^13.3.0",
+    "standard": "^12.0.1"
   },
   "standard": {
     "globals": [
@@ -44,6 +44,6 @@
   "dependencies": {
     "express": "^4.14.0",
     "oauth": "^0.9.14",
-    "tumblr.js": "^1.1.1"
+    "tumblr.js": "^2.0.0"
   }
 }
